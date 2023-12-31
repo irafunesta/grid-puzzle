@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1l7t80pj5gi7"]
+
+[ext_resource type="Script" path="res://Levels/Grid.gd" id="1_yupgd"]
+[ext_resource type="PackedScene" uid="uid://d2fau7ludayk8" path="res://SimpleCell.tscn" id="2_f2tho"]
+
+[node name="Grid" type="Node2D"]
+script = ExtResource("1_yupgd")
+rows = 10
+cols = 10
+scene = ExtResource("2_f2tho")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

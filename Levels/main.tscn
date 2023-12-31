@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccr5iih0fm6d0"]
+
+[ext_resource type="PackedScene" uid="uid://c1l7t80pj5gi7" path="res://grid.tscn" id="1_6d2bb"]
+
+[node name="main" type="Node2D"]
+
+[node name="Grid" parent="." instance=ExtResource("1_6d2bb")]
+rows = 4
+cols = 4
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Piece1" parent="." instance=ExtResource("1_6d2bb")]
+position = Vector2(348, -168)
+rows = 2
+cols = 2
+canMove = true
+values = Array[bool]([true, true, false, false])
+
+[node name="Piece2" parent="." instance=ExtResource("1_6d2bb")]
+position = Vector2(383, 62)
+rows = 2
+cols = 2
+canMove = true
+values = Array[bool]([true, false, false, true])
