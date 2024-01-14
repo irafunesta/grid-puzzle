@@ -16,6 +16,7 @@ rows = 2
 cols = 2
 canMove = true
 values = Array[bool]([true, true, false, false])
+pieceId = 1
 
 [node name="Piece2" parent="." instance=ExtResource("1_6d2bb")]
 position = Vector2(383, 62)
@@ -23,3 +24,12 @@ rows = 2
 cols = 2
 canMove = true
 values = Array[bool]([true, false, false, true])
+pieceId = 2
+
+[node name="test" parent="." instance=ExtResource("1_6d2bb")]
+position = Vector2(-419, 113)
+rows = 2
+cols = 2
+canMove = true
+values = Array[bool]([true, true, true, true])
+pieceId = 4

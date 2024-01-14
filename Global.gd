@@ -9,6 +9,7 @@ var mainGrid : Grid
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print("ready")
 	pass # Replace with function body.
 
 
@@ -54,6 +55,24 @@ func copyToMainGrid(piece : Grid):
 		if lastCell_x >= mainGrid.rows or lastCell_y >= mainGrid.cols :
 			piece.jumpToStartPosition() 
 			return
+			
+		var spaceIsFree = true;
+			
+		#Check if the space is free
+		for i in range(0, piece.rows * piece.cols):
+			var x = i % piece.rows
+			var y = floor(i / piece.rows)
+			
+			var tmpY = startingCell_y + y
+			var tmpX = startingCell_x + x
+			
+			var id = int((tmpY * mainGrid.rows) + tmpX)
+			if mainGrid.getCellId(id) > -1:
+				spaceIsFree = false
+				
+		if !spaceIsFree:
+			piece.jumpToStartPosition()
+			return
 		
 		# Can actually copy data
 		for i in range(0, piece.rows * piece.cols):
@@ -65,7 +84,7 @@ func copyToMainGrid(piece : Grid):
 			
 			var id = int((tmpY * mainGrid.rows) + tmpX)
 			
-			mainGrid.setCell(id , piece.getCellValue(i))
+			mainGrid.setCell(id , piece.getCellValue(i), piece.pieceId)
 		
 		piece.jumpToStartPosition()
 		pass

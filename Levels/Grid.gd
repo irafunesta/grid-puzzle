@@ -5,6 +5,7 @@ class_name Grid
 @export var cols = 3;
 @export var canMove = false;
 @export var values : Array[bool]
+@export var pieceId = -1;
 
 @export  var scene : PackedScene
 
@@ -51,11 +52,11 @@ func _ready():
 		var halfPoint = ((cell.width * rows) / 2) - (cell.width / 2)
 		
 		cell.position = Vector2((x * cell.width) - halfPoint, (y * cell.height) - halfPoint)
-		cell.setId(i)
+		cell.setId(pieceId)
 		
 		if canMove and values.size() > 0:
 			if values[i] != null:
-				cell.setActive(values[i]) 
+				cell.setActive(values[i])
 		
 		grid.append(cell)
 	
@@ -107,9 +108,14 @@ func _input(event):
 func jumpToStartPosition():
 	global_transform.origin = startingPosition
 
-func setCell(id, value):
-	if grid[id] != null:
+func setCell(id, value , pieceId):
+	if grid[id] != null and pieceId != null:
 		grid[id].active = value
+		grid[id].setId(pieceId)
+
+func getCellId(id):
+	if id != null:
+		return grid[id].gridId
 
 func getCellValue(id):
 	if grid[id] != null:
